@@ -3,33 +3,22 @@ package listing2_1;
 
 import net.jcip.annotations.ThreadSafe;
 
-import javax.servlet.*;
-import java.math.BigInteger;
+import javax.servlet.Servlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 
 @ThreadSafe
 public final class StatelessFactorizer implements Servlet {
 
     @Override
-    public void service(ServletRequest req, ServletResponse resp) {
-        final BigInteger i = extractFromRequest(req);
-        final BigInteger[] factors = factor(i);
-        encodeIntoResponse(resp, factors);
-    }
-
-    private void encodeIntoResponse(ServletResponse resp, BigInteger[] factors) {
-
-    }
-
-    private BigInteger[] factor(BigInteger i) {
-        return new BigInteger[0];
-    }
-
-    private BigInteger extractFromRequest(ServletRequest req) {
-        return null;
+    public void service(final ServletRequest servletRequest,
+                        final ServletResponse servletResponse) {
     }
 
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
+    public void init(final ServletConfig servletConfig) throws ServletException {
 
     }
 

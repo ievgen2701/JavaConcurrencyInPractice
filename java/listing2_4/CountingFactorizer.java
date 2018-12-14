@@ -1,14 +1,20 @@
-package listing2_2;
+package listing2_4;
 
-import net.jcip.annotations.NotThreadSafe;
+import net.jcip.annotations.ThreadSafe;
 
 import javax.servlet.*;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicLong;
 
-@NotThreadSafe
-public class UnsafeCountingFactorizer implements Servlet {
+@ThreadSafe
+public final class CountingFactorizer
+        implements Servlet {
 
-    private long count = 0;
+    private final AtomicLong count = new AtomicLong(0);
+
+    public long getCount() {
+        return this.count.get();
+    }
 
     @Override
     public void init(final ServletConfig servletConfig) throws ServletException {
@@ -22,7 +28,7 @@ public class UnsafeCountingFactorizer implements Servlet {
 
     @Override
     public void service(final ServletRequest servletRequest, final ServletResponse servletResponse) throws ServletException, IOException {
-        ++this.count;
+        this.count.incrementAndGet();
     }
 
     @Override

@@ -12,7 +12,7 @@ public class UnsafeCountingFactorizer implements Servlet {
     private long count = 0;
 
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
+    public void init(final ServletConfig servletConfig) throws ServletException {
 
     }
 
@@ -22,22 +22,22 @@ public class UnsafeCountingFactorizer implements Servlet {
     }
 
     @Override
-    public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
-        final BigInteger i = extractFromRequest(req);
-        final BigInteger[] factors = factor(i);
-        ++count;
-        encodeIntoResponse(resp, factors);
+    public void service(final ServletRequest servletRequest, final ServletResponse servletResponse) throws ServletException, IOException {
+        final BigInteger fromRequest = extractFromRequest(servletRequest);
+        final BigInteger[] factors = factor(fromRequest);
+        ++this.count;
+        encodeIntoResponse(servletResponse, factors);
     }
 
-    private void encodeIntoResponse(ServletResponse resp, BigInteger[] factors) {
+    private static void encodeIntoResponse(final ServletResponse resp, final BigInteger[] factors) {
 
     }
 
-    private BigInteger[] factor(BigInteger i) {
+    private static BigInteger[] factor(final BigInteger fromRequest) {
         return new BigInteger[0];
     }
 
-    private BigInteger extractFromRequest(ServletRequest req) {
+    private static BigInteger extractFromRequest(final ServletRequest req) {
         return null;
     }
 

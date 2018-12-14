@@ -1,18 +1,31 @@
-package listing2_1;
+package listing2_2;
 
-
-import net.jcip.annotations.ThreadSafe;
+import net.jcip.annotations.NotThreadSafe;
 
 import javax.servlet.*;
+import java.io.IOException;
 import java.math.BigInteger;
 
-@ThreadSafe
-public final class StatelessFactorizer implements Servlet {
+@NotThreadSafe
+public class UnsafeCountingFactorizer implements Servlet {
+
+    private long count = 0;
 
     @Override
-    public void service(ServletRequest req, ServletResponse resp) {
+    public void init(ServletConfig servletConfig) throws ServletException {
+
+    }
+
+    @Override
+    public ServletConfig getServletConfig() {
+        return null;
+    }
+
+    @Override
+    public void service(ServletRequest req, ServletResponse resp) throws ServletException, IOException {
         final BigInteger i = extractFromRequest(req);
         final BigInteger[] factors = factor(i);
+        ++count;
         encodeIntoResponse(resp, factors);
     }
 
@@ -28,15 +41,6 @@ public final class StatelessFactorizer implements Servlet {
         return null;
     }
 
-    @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
-
-    }
-
-    @Override
-    public ServletConfig getServletConfig() {
-        return null;
-    }
 
     @Override
     public String getServletInfo() {

@@ -1,6 +1,7 @@
 package list1_1;
 
-import annotation.NotThreadSafe;
+
+import net.jcip.annotations.NotThreadSafe;
 
 @NotThreadSafe
 public final class UnsafeSequence {

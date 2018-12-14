@@ -1,7 +1,7 @@
 package list1_2;
 
-import annotation.ThreadSafe;
 import net.jcip.annotations.GuardedBy;
+import net.jcip.annotations.ThreadSafe;
 
 @ThreadSafe
 public final class Sequence {
